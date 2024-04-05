@@ -1,0 +1,26 @@
+.loginFormWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000066;
+}
+.loginForm {
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 50px 50px;
+    width: 500px;
+    height: 700px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.loginForm input {
+    /* width: 70%; */
+    height: 30px;
+}
