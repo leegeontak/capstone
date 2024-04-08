@@ -3,7 +3,7 @@ import "../pagesStyle/SignUpPageStyle.css";
 import Header from "../component/Header";
 import SignUpPage from "./SignUpPage";
 import ReviewPage from "./ReviewPage";
-import Draft from "../component/Draft";
+import Draft from "../component/BlogPostForm";
 
 const MainPage = () => {
     const dummyData = [
@@ -81,10 +81,10 @@ const MainPage = () => {
                 </section>
             </div>
             <SignUpPage></SignUpPage>
-            <Draft></Draft>
+            {/* <Draft></Draft> */}
             {/* <MyEditor></MyEditor> */}
             {/* <Editor></Editor> */}
-            {/* <ReviewPage></ReviewPage> */}
+            <ReviewPage></ReviewPage>
         </>
     );
 };

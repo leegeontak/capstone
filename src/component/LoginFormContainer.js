@@ -37,7 +37,7 @@ const LoginFormContainer = ({ toggleModal }) => {
                     로그인
                 </button>
                 <div className="signUpBtnContainer">
-                    <button className="signUpBtn">
+                    <button className="moveSignUpPage">
                         <span style={{ textDecoration: "underLine" }}>
                             회원가입하여
                         </span>{" "}
