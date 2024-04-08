@@ -10,12 +10,40 @@ const LoginFormContainer = ({ toggleModal }) => {
     return createPortal(
         <div className="loginFormWrapper" onClick={() => toggleModal()}>
             <div className="loginForm" onClick={(e) => handleFormClick(e)}>
+                <div className="loginCloseBtnContainer">
+                    <button
+                        className="loginCloseBtn"
+                        onClick={() => toggleModal()}
+                    >
+                        X
+                    </button>
+                </div>
+
                 <h1>어서 오세요.</h1>
-                <span>이메일 주소</span>
-                <input type="email"></input>
-                <span>패스워드</span>
-                <input type="password"></input>
-                <button>로그인</button>
+                <label htmlFor="email">이메일 주소</label>
+                <input type="email" id="email" placeholder="이메일"></input>
+                <label htmlFor="password" style={{ marginTop: 15 }}>
+                    패스워드
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="패스워드"
+                ></input>
+                <button
+                    className="login"
+                    style={{ width: 200, marginTop: 100, marginLeft: 100 }}
+                >
+                    로그인
+                </button>
+                <div className="signUpBtnContainer">
+                    <button className="signUpBtn">
+                        <span style={{ textDecoration: "underLine" }}>
+                            회원가입하여
+                        </span>{" "}
+                        즐겨보세요
+                    </button>
+                </div>
             </div>
         </div>,
         document.body

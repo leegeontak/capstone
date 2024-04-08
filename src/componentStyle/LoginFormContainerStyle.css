@@ -20,7 +20,36 @@
     display: flex;
     flex-direction: column;
 }
+.loginCloseBtnContainer {
+    display: flex;
+    justify-content: end;
+}
+.loginCloseBtn {
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    justify-content: end;
+    font-weight: bold;
+    font-size: 35px;
+    display: inline;
+    cursor: pointer;
+}
 .loginForm input {
     /* width: 70%; */
-    height: 30px;
+    height: 35px;
+    margin-top: 8px;
+    padding-left: 8px;
+}
+.signUpBtnContainer {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+}
+.signUpBtn {
+    cursor: pointer;
+
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    margin-top: 20px;
 }
