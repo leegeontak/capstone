@@ -34,18 +34,40 @@ function BlogPostForm() {
 
     const handleImageChange = (e) => {
         const newImages = Array.from(e.target.files);
-        setImages([
-            ...images,
-            ...newImages.map((file) => {
-                if (file.constructor == File) {
-                    return URL.createObjectURL(file);
-                }
-                // console.log(file.constructor);
-                // return URL.createObjectURL(file);
-            }),
-        ]);
-    };
+        console.log(newImages);
+        const imagesWithStar = newImages.map((file) => ({
+            image: URL.createObjectURL(file),
+            checked: false,
+            serviceStar: [true, true, true, true, true],
+            cleanStar: [true, true, true, true, true],
+            locationStar: [true, true, true, true, true],
+        }));
+        setImages((prevImages) => [...prevImages, ...imagesWithStar]);
 
+        // setImages([
+        //     ...images,
+        //     ...newImages.map((file) => {
+        //         if (file.constructor == File) {
+        //             return URL.createObjectURL(file);
+        //         }
+        //     }),
+        // ]);
+        console.log(images);
+    };
+    const reviewServiceStar = (imageIndex, starIndex) => {
+        setImages((prevState) => {
+            const updatedImages = [...prevState];
+            updatedImages[imageIndex].serviceStar = updatedImages[
+                imageIndex
+            ].serviceStar.map(
+                (star, idx) =>
+                    idx <= starIndex
+                        ? true // 클릭된 별점과 그 이전 별점들은 활성화
+                        : false // 클릭되지 않은 별점은 비활성화
+            );
+            return updatedImages;
+        });
+    };
     const handleImageDescriptionChange = (index, e) => {
         const newContentArr = [...contentArr];
         newContentArr[index] = e.target.value;
@@ -87,10 +109,53 @@ function BlogPostForm() {
                             {image !== "" ? (
                                 <div>
                                     <img
-                                        src={image}
+                                        src={image.image}
                                         style={{ width: "100%" }}
                                     />
-
+                                    <input
+                                        type="checkbox"
+                                        checked={images[index].checked}
+                                        onChange={() => {
+                                            const updatedImages = [...images];
+                                            updatedImages[index].checked =
+                                                !updatedImages[index].checked;
+                                            setImages(updatedImages);
+                                        }}
+                                    ></input>
+                                    {images[index].checked ? (
+                                        <div className="starContainer">
+                                            {images[index].serviceStar.map(
+                                                (star, idx) => (
+                                                    <div
+                                                        onClick={() =>
+                                                            reviewServiceStar(
+                                                                index,
+                                                                idx
+                                                            )
+                                                        }
+                                                        key={idx}
+                                                        className="star"
+                                                    >
+                                                        {star ? (
+                                                            <img src="images/trueStar.png"></img>
+                                                        ) : (
+                                                            <img src="images/falseStar.png"></img>
+                                                        )}
+                                                    </div>
+                                                )
+                                            )}
+                                            <span>
+                                                {
+                                                    images[
+                                                        index
+                                                    ].serviceStar.filter(
+                                                        (star) => star === true
+                                                    ).length
+                                                }
+                                                점입니다
+                                            </span>
+                                        </div>
+                                    ) : null}
                                     <button onClick={() => imageDelete(index)}>
                                         삭제
                                     </button>
