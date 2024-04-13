@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../componentStyle/LoginFormContainerStyle.css";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 
 const LoginFormContainer = ({ toggleModal }) => {
     const handleFormClick = (e) => {
@@ -37,12 +38,16 @@ const LoginFormContainer = ({ toggleModal }) => {
                     로그인
                 </button>
                 <div className="signUpBtnContainer">
-                    <button className="moveSignUpPage">
-                        <span style={{ textDecoration: "underLine" }}>
-                            회원가입하여
-                        </span>{" "}
-                        즐겨보세요
-                    </button>
+                    <Link to={"../signuppage"}>
+                        <button className="moveSignUpPage">
+                            <span style={{ textDecoration: "underLine" }}>
+                                회원가입하여
+                            </span>
+                            <div style={{ marginTop: 5 }}>
+                                서비스를 이용해보세요
+                            </div>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>,

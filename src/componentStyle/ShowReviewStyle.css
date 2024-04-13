@@ -1,0 +1,10 @@
+.showReviewContainer {
+    width: 100%;
+    min-height: 100%;
+    display: grid;
+    place-content: center;
+    border: 1px solid blue;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    grid-template-rows: repeat(3, 1fr);
+}

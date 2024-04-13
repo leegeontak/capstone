@@ -38,9 +38,8 @@ label[for="selectImage"] {
     left: 71%;
 }
 .addImage {
+    cursor: pointer;
     border: 1px solid rgba(128, 128, 128, 0.712);
-    background-image: url(../image/picture.png);
-    background-size: 100%;
     width: 50px;
     height: 50px;
 }

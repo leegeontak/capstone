@@ -1,61 +1,61 @@
 import "../pagesStyle/MainPageStyle.css";
 import "../pagesStyle/SignUpPageStyle.css";
 import Header from "../component/Header";
-import SignUpPage from "./SignUpPage";
-import ReviewPage from "./ReviewPage";
-import Draft from "../component/BlogPostForm";
+import { useState } from "react";
+import SearchResultPage from "./SearchResultPage";
 
 const MainPage = () => {
+    const [serchWord, setSearchWord] = useState("");
     const dummyData = [
         {
             title: "타이틀1",
             content: "내용1",
-            thumnail: "이미지1",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀2",
             content: "내용2",
-            thumnail: "이미지2",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
         {
             title: "타이틀3",
             content: "내용3",
-            thumnail: "이미지3",
+            thumnail: "/images/picture.png",
         },
     ];
     return (
@@ -66,25 +66,26 @@ const MainPage = () => {
                     <h1>어디로 가시나요?</h1>
                 </section>
                 <section className="searchBtnContainer">
-                    <input type="text" className="searchInput"></input>
+                    <input
+                        type="text"
+                        className="searchInput"
+                        value={serchWord}
+                        onChange={(e) => setSearchWord(e.target.value)}
+                    ></input>
                     <button className="searchBtn">검색</button>
                 </section>
                 <h1>여러 후기를 둘러 보세요!</h1>
                 <section className="reviewContainer">
                     {dummyData.map((item, idx) => (
                         <div key={idx} className="reviewFrame">
-                            <div className="thumnail">{item.thumnail}</div>
+                            <img src={item.thumnail} className="thumnail"></img>
                             <div className="title">{item.title}</div>
                             <div className="content">{item.content}</div>
                         </div>
                     ))}
                 </section>
             </div>
-            <SignUpPage></SignUpPage>
-            {/* <Draft></Draft> */}
-            {/* <MyEditor></MyEditor> */}
-            {/* <Editor></Editor> */}
-            <ReviewPage></ReviewPage>
+            <SearchResultPage></SearchResultPage>
         </>
     );
 };

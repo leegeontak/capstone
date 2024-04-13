@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../componentStyle/HeaderStyle.css";
 import LoginFormContainer from "./LoginFormContainer";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [loginBtnClick, setLoginBtnClick] = useState(false);
@@ -9,7 +10,13 @@ const Header = () => {
             <header>
                 <div className="navContainer">
                     <div className="logo">LOGO</div>
-                    <div className="review">리뷰</div>
+                    <Link
+                        to={"../reviewpage"}
+                        style={{ textDecoration: "none", color: "black" }}
+                    >
+                        <div className="review">리뷰 쓰기</div>
+                    </Link>
+
                     <button
                         className="login"
                         onClick={() => setLoginBtnClick(!loginBtnClick)}
