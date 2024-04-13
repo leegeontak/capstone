@@ -1,11 +1,14 @@
 import Header from "../component/Header";
+import ShowMap from "../component/ShowMap";
 import ShowReview from "../component/ShowReview";
 import "../pagesStyle/SearchResultPageStyle.css";
 import { useState } from "react";
-
 const SearchResultPage = () => {
     const [serchWord, setSearchWord] = useState("");
     const [radioChecked, setRadioChecked] = useState(true);
+    const handelSubmit = (event) => {
+        event.preventDefault();
+    };
     return (
         <>
             <Header></Header>
@@ -17,13 +20,15 @@ const SearchResultPage = () => {
                 }}
             >
                 <section className="searchBtnContainer">
-                    <input
-                        type="text"
-                        className="searchInput"
-                        value={serchWord}
-                        onChange={(e) => setSearchWord(e.target.value)}
-                    ></input>
-                    <button className="searchBtn">검색</button>
+                    <form onSubmit={handelSubmit}>
+                        <input
+                            type="text"
+                            className="searchInput"
+                            value={serchWord}
+                            onChange={(e) => setSearchWord(e.target.value)}
+                        ></input>
+                        <button className="searchBtn">검색</button>
+                    </form>
                 </section>
             </div>
 
@@ -38,7 +43,9 @@ const SearchResultPage = () => {
                             checked={radioChecked}
                             onChange={() => setRadioChecked(!radioChecked)}
                         ></input>
-                        <label htmlFor="showReview">후기</label>
+                        <label htmlFor="showReview">
+                            <img src="/images/review.png"></img>
+                        </label>
                     </div>
                     <div>
                         <input
@@ -49,11 +56,17 @@ const SearchResultPage = () => {
                             checked={!radioChecked}
                             onChange={() => setRadioChecked(!radioChecked)}
                         ></input>
-                        <label htmlFor="showMap">지도</label>
+                        <label htmlFor="showMap">
+                            <img src="/images/map.png"></img>
+                        </label>
                     </div>
                 </div>
                 <div className="showResultsection">
-                    {radioChecked ? <ShowReview></ShowReview> : null}
+                    {radioChecked ? (
+                        <ShowReview></ShowReview>
+                    ) : (
+                        <ShowMap></ShowMap>
+                    )}
                     {/* <ShowReview></ShowReview> */}
                 </div>
             </div>

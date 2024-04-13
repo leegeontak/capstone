@@ -1,13 +1,29 @@
 .SearchResultContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 50px;
 }
 .radioBtnContainer {
     display: flex;
+    position: relative;
+    /* top: -350px; */
     flex-direction: column;
-    width: 100px;
+    justify-content: start;
+    align-items: center;
+    width: 200px;
+}
+.radioBtnContainer label {
+    background-color: rgba(128, 128, 128, 0.169);
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+}
+.radioBtnContainer label img {
+    width: 80%;
+    height: 80%;
+    position: relative;
+    top: 7px;
+    left: 7px;
 }
 .showResultsection {
     display: flex;
@@ -15,4 +31,10 @@
     align-items: center;
     width: 100%;
     min-height: calc(100vh - 170px);
+}
+input[type="radio"] {
+    display: none;
+}
+input[type="radio"]:checked + label {
+    background-color: rgba(128, 128, 128, 0.468);
 }
