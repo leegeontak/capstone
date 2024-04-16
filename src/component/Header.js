@@ -9,7 +9,13 @@ const Header = () => {
         <>
             <header>
                 <div className="navContainer">
-                    <div className="logo">LOGO</div>
+                    <Link
+                        to={"/"}
+                        style={{ textDecoration: "none", color: "black" }}
+                    >
+                        <div className="logo">LOGO</div>
+                    </Link>
+
                     <Link
                         to={"../reviewpage"}
                         style={{ textDecoration: "none", color: "black" }}

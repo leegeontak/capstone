@@ -51,7 +51,7 @@ const ShowMap = () => {
                 <div>${placeInfo.place_name}</div>
                 <div>연락처</div>
                 <div>${placeInfo.phone}</div>
-                <div>음식점 사이트</div>
+                <div>사이트</div>
                 <a href="${placeInfo.place_url}" target="_blank">${placeInfo.place_url}</a>
             </div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
             let iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
@@ -72,6 +72,7 @@ const ShowMap = () => {
         let callback = function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
                 setItemList(result);
+                console.log(result);
             } else {
                 console.log("검색 실패");
             }

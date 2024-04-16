@@ -8,7 +8,7 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     min-height: 100vh;
     border: 1px solid rgba(128, 128, 128, 0.712);
     box-sizing: border-box;
@@ -60,10 +60,11 @@ label[for="selectImage"] {
 }
 .starContainer {
     display: flex;
+    align-items: center;
 }
 .star {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .star img {
     width: 100%;

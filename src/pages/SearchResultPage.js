@@ -3,11 +3,19 @@ import ShowMap from "../component/ShowMap";
 import ShowReview from "../component/ShowReview";
 import "../pagesStyle/SearchResultPageStyle.css";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 const SearchResultPage = () => {
-    const [serchWord, setSearchWord] = useState("");
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const queryWord = searchParams.get("query");
+    const navigate = useNavigate();
+    const [serchWord, setSearchWord] = useState(queryWord);
     const [radioChecked, setRadioChecked] = useState(true);
-    const handelSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
+        // 입력한 검색어를 쿼리 문자열로 추가하고 새로운 URL로 이동
+        navigate(`/searchresultpage?query=${encodeURIComponent(serchWord)}`);
+        console.log(serchWord);
     };
     return (
         <>
@@ -20,7 +28,7 @@ const SearchResultPage = () => {
                 }}
             >
                 <section className="searchBtnContainer">
-                    <form onSubmit={handelSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <input
                             type="text"
                             className="searchInput"
