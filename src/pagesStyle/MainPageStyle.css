@@ -44,14 +44,16 @@
     /* border: 1px solid blue; */
     grid-template-columns: 600px 600px;
     gap: 50px;
-    grid-template-rows: auto;
+    grid-template-rows: 300px 300px;
     cursor: pointer;
 }
 .reviewFrame {
     display: flex;
+    cursor: pointer;
 }
 .thumnail {
     border-radius: 10px;
+    border: 1px solid gray;
     width: 50%;
     height: 100%;
 }
@@ -61,7 +63,7 @@
 }
 .title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

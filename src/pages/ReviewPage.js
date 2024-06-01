@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../pagesStyle/ReviewPageStyle.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function BlogPostForm() {
     const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ function BlogPostForm() {
     const [newObj, setNewObj] = useState([]);
     const textAreaRefs = useRef([]);
     const firstAreaRefs = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (firstAreaRefs.current) {
@@ -194,6 +196,8 @@ function BlogPostForm() {
                 "Content-Type": "multipart/form-data",
             },
         });
+        alert("리뷰가 작성되었습니다");
+        navigate("/");
     };
     const imageDelete = (index) => {
         const newImages = [...images]; // 이미지 배열 복사

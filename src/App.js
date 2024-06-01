@@ -5,6 +5,7 @@ import ReviewPage from "./pages/ReviewPage";
 import SignUpPage from "./pages/SignUpPage";
 import SearchResultPage from "./pages/SearchResultPage";
 import MyReview from "./pages/MyReview";
+import ReviewDetailPage from "./pages/ReviewDetailPage";
 
 function App() {
     return (
@@ -24,6 +25,10 @@ function App() {
                     element={<SearchResultPage></SearchResultPage>}
                 ></Route>
                 <Route path="/myreview" element={<MyReview></MyReview>}></Route>
+                <Route
+                    path="/reviewdetailpage"
+                    element={<ReviewDetailPage></ReviewDetailPage>}
+                ></Route>
             </Routes>
         </BrowserRouter>
     );

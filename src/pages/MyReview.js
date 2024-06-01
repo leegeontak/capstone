@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../pagesStyle/MyReviewStyle.css";
+import { useNavigate } from "react-router-dom";
+
 const MyReview = () => {
     const [reviewData, setReviewData] = useState([]);
     const [radioChecked, setRadioChecked] = useState(true);
+    const navigate = useNavigate();
     const getAllReview = async (userID, radioChecked) => {
         try {
             const response = await axios.post("/api/getreview", {
@@ -33,6 +36,12 @@ const MyReview = () => {
         }
     }, [radioChecked]);
     console.log(reviewData);
+    const reviewClick = (e) => {
+        const targetClass = e.currentTarget.className;
+        const detailTargetReview = targetClass.split(" ")[1];
+        console.log(detailTargetReview);
+        navigate(`/reviewdetailpage?query=${detailTargetReview}`);
+    };
     const reviewDelete = (e) => {
         const targetClass = e.currentTarget.className;
         const deleteTargetReview = targetClass.split(" ")[1];
@@ -45,7 +54,7 @@ const MyReview = () => {
         }
     };
     return (
-        <>
+        <div className="headerContainer">
             <h1
                 style={{
                     textAlign: "center",
@@ -55,40 +64,48 @@ const MyReview = () => {
             >
                 작성하신 글들을 확인해보세요!
             </h1>
-            <input
-                type="radio"
-                id="new"
-                name="time"
-                value="최신순"
-                checked={radioChecked}
-                onChange={() => {
-                    setRadioChecked(!radioChecked);
-                    console.log(radioChecked);
-                }}
-            ></input>
-            <label htmlFor="new">최신순</label>
+            <div className="myReviewRadioBtnContainer">
+                <input
+                    type="radio"
+                    id="new"
+                    name="time"
+                    value="최신순"
+                    checked={radioChecked}
+                    onChange={() => {
+                        setRadioChecked(!radioChecked);
+                        console.log(radioChecked);
+                    }}
+                ></input>
+                <label htmlFor="new">
+                    <span>최신순</span>
+                </label>
 
-            <input
-                type="radio"
-                id="old"
-                name="time"
-                value="오래된순"
-                checked={!radioChecked}
-                onChange={() => {
-                    setRadioChecked(!radioChecked);
-                    console.log(radioChecked);
-                }}
-            ></input>
-            <label htmlFor="old">오래된순</label>
+                <input
+                    type="radio"
+                    id="old"
+                    name="time"
+                    value="오래된순"
+                    checked={!radioChecked}
+                    onChange={() => {
+                        setRadioChecked(!radioChecked);
+                        console.log(radioChecked);
+                    }}
+                ></input>
+                <label htmlFor="old">
+                    <span>오래된순</span>
+                </label>
+            </div>
 
             <div className="MyReviewContainer">
                 <div className="wholeBody">
                     {reviewData.map((item, idx) => {
                         return (
-                            <div
-                                className={`MyReviewFrameContainer ${item.reviewDate}`}
-                            >
-                                <div key={idx} className="reviewFrame">
+                            <div className={`MyReviewFrameContainer`}>
+                                <div
+                                    key={idx}
+                                    className={`reviewFrame ${item.reviewDate}`}
+                                    onClick={(e) => reviewClick(e)}
+                                >
                                     <img
                                         src={`/images/${
                                             item.reviewImages.filter(
@@ -109,7 +126,7 @@ const MyReview = () => {
                                 </div>
                                 <div className="MyReviewBtnContainer">
                                     <div className={`edit ${item.reviewDate}`}>
-                                        <img src="/images/modifypicture.png"></img>
+                                        <img src="/images/edit.png"></img>
                                     </div>
                                     <div
                                         className={`remove ${item.reviewDate}`}
@@ -123,7 +140,7 @@ const MyReview = () => {
                     })}
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 export default MyReview;

@@ -38,6 +38,7 @@ const MainPage = () => {
     const reviewClick = (e) => {
         const showReviewDate = e.currentTarget.id;
         console.log(showReviewDate);
+        navigate(`/reviewdetailpage?query=${showReviewDate}`);
     };
     return (
         <>
@@ -62,14 +63,7 @@ const MainPage = () => {
                 <h1>여러 후기를 둘러 보세요!</h1>
                 <section className="reviewContainer">
                     {showData.map((item, idx) => {
-                        // const reviewthumnail = item.filter((item) => {
-                        //     return item !== "";
-                        // });
-                        console.log(typeof item);
-                        console.log(
-                            item.reviewImages.filter((item) => item !== "")[0]
-                        );
-
+                        console.log(item);
                         return (
                             <div
                                 key={idx}
