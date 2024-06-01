@@ -1,0 +1,31 @@
+.MyReviewContainer {
+    display: flex;
+    justify-content: center;
+}
+.wholeBody {
+    width: 60%;
+}
+.MyReviewFrameContainer {
+    display: flex;
+    margin-bottom: 50px;
+}
+.MyReviewFrameContainer .reviewFrame {
+    width: 80%;
+}
+.MyReviewFrameContainer .MyReviewBtnContainer {
+    width: 20%;
+}
+.edit {
+    width: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.edit img {
+    width: 100%;
+}
+.remove {
+    width: 50px;
+}
+.remove img {
+    width: 100%;
+}

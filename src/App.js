@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import ReviewPage from "./pages/ReviewPage";
 import SignUpPage from "./pages/SignUpPage";
 import SearchResultPage from "./pages/SearchResultPage";
+import MyReview from "./pages/MyReview";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     path="/searchresultpage"
                     element={<SearchResultPage></SearchResultPage>}
                 ></Route>
+                <Route path="/myreview" element={<MyReview></MyReview>}></Route>
             </Routes>
         </BrowserRouter>
     );

@@ -1,22 +1,49 @@
+import axios from "axios";
 import Header from "../component/Header";
 import ShowMap from "../component/ShowMap";
 import ShowReview from "../component/ShowReview";
 import "../pagesStyle/SearchResultPageStyle.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 const SearchResultPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const queryWord = searchParams.get("query");
     const navigate = useNavigate();
-    const [serchWord, setSearchWord] = useState(queryWord);
+    const [searchWord, setSearchWord] = useState(queryWord);
     const [radioChecked, setRadioChecked] = useState(true);
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // 입력한 검색어를 쿼리 문자열로 추가하고 새로운 URL로 이동
-        navigate(`/searchresultpage?query=${encodeURIComponent(serchWord)}`);
-        console.log(serchWord);
+    const [responseData, setResponseData] = useState([]);
+    useEffect(() => {
+        if (queryWord) {
+            searchDatabase(queryWord);
+        }
+    }, [queryWord]);
+    const searchDatabase = async (query) => {
+        try {
+            const response = await axios.post(
+                `/api/searchword?query=${encodeURIComponent(query)}`
+            );
+            setResponseData(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error fetching search results:", error);
+        }
     };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // 검색 결과 페이지로 이동할 때 검색어를 쿼리 문자열로 함께 전달
+        if (searchWord.length > 0) {
+            navigate(
+                `/searchresultpage?query=${encodeURIComponent(searchWord)}`
+            );
+            if (!radioChecked) {
+                setRadioChecked(true);
+            }
+        } else {
+            alert("검색할 단어를 한자리 이상 입력해 주세요.");
+        }
+    };
+    console.log(queryWord);
     return (
         <>
             <Header></Header>
@@ -32,7 +59,7 @@ const SearchResultPage = () => {
                         <input
                             type="text"
                             className="searchInput"
-                            value={serchWord}
+                            value={searchWord}
                             onChange={(e) => setSearchWord(e.target.value)}
                         ></input>
                         <button className="searchBtn">검색</button>
@@ -71,7 +98,7 @@ const SearchResultPage = () => {
                 </div>
                 <div className="showResultsection">
                     {radioChecked ? (
-                        <ShowReview></ShowReview>
+                        <ShowReview responseData={responseData}></ShowReview>
                     ) : (
                         <ShowMap></ShowMap>
                     )}

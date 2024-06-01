@@ -109,11 +109,11 @@ const ShowMap = () => {
             case "FD6":
                 categoryImg = "/images/restaurant.png";
                 break;
-            case "CE7":
-                categoryImg = "/images/coffee.png";
+            case "CT1":
+                categoryImg = "/images/flag.png";
                 break;
-            case "OL7":
-                categoryImg = "/images/gasStation.png";
+            case "AT4":
+                categoryImg = "/images/attraction.png";
                 break;
         }
         let imageSize = new kakao.maps.Size(35, 40);

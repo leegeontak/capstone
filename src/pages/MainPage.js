@@ -1,73 +1,44 @@
 import "../pagesStyle/MainPageStyle.css";
 import "../pagesStyle/SignUpPageStyle.css";
 import Header from "../component/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const MainPage = () => {
+    const koreanImage = "/image/테스트2.jpg";
     const [searchWord, setSearchWord] = useState("");
+    const [showData, setShowData] = useState([]);
 
-    const dummyData = [
-        {
-            title: "타이틀1",
-            content: "내용1",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀2",
-            content: "내용2",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-        {
-            title: "타이틀3",
-            content: "내용3",
-            thumnail: "/images/picture.png",
-        },
-    ];
-
+    useEffect(() => {
+        const settingData = async () => {
+            try {
+                const response = await axios.post("/api/showdata");
+                console.log(response.data);
+                setShowData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        settingData();
+    }, []);
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
         e.preventDefault();
         // 검색 결과 페이지로 이동할 때 검색어를 쿼리 문자열로 함께 전달
-        navigate(`/searchresultpage?query=${encodeURIComponent(searchWord)}`);
+        if (searchWord.length > 0) {
+            navigate(
+                `/searchresultpage?query=${encodeURIComponent(searchWord)}`
+            );
+        } else {
+            alert("검색할 단어를 한자리 이상 입력해 주세요.");
+        }
     };
-
+    const reviewClick = (e) => {
+        const showReviewDate = e.currentTarget.id;
+        console.log(showReviewDate);
+    };
     return (
         <>
             <Header />
@@ -90,19 +61,40 @@ const MainPage = () => {
                 </section>
                 <h1>여러 후기를 둘러 보세요!</h1>
                 <section className="reviewContainer">
-                    {dummyData.map((item, idx) => (
-                        <div key={idx} className="reviewFrame">
-                            <img
-                                src={item.thumnail}
-                                className="thumnail"
-                                alt={item.title}
-                            />
-                            <div className="contentFrame">
-                                <div className="title">{item.title}</div>
-                                <div className="content">{item.content}</div>
+                    {showData.map((item, idx) => {
+                        // const reviewthumnail = item.filter((item) => {
+                        //     return item !== "";
+                        // });
+                        console.log(typeof item);
+                        console.log(
+                            item.reviewImages.filter((item) => item !== "")[0]
+                        );
+
+                        return (
+                            <div
+                                key={idx}
+                                className="reviewFrame"
+                                id={item.reviewDate}
+                                onClick={(e) => reviewClick(e)}
+                            >
+                                <img
+                                    src={`/images/${
+                                        item.reviewImages.filter(
+                                            (item) => item !== ""
+                                        )[0]
+                                    }`}
+                                    className="thumnail"
+                                    alt={item.title}
+                                />
+                                <div className="contentFrame">
+                                    <div className="title">{item.title}</div>
+                                    <div className="content">
+                                        {item.content}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </section>
             </div>
         </>

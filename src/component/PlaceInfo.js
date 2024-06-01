@@ -6,8 +6,8 @@ const PlaceInfo = ({ item, searchCategory }) => {
             </div>
             <div className="currentLocationBtnContainer">
                 <button onClick={() => searchCategory("FD6")}>맛집</button>
-                <button onClick={() => searchCategory("CE7")}>카페</button>
-                <button onClick={() => searchCategory("OL7")}>주유소</button>
+                <button onClick={() => searchCategory("CT1")}>문화시설</button>
+                <button onClick={() => searchCategory("AT4")}>관광명소</button>
             </div>
         </div>
     );
